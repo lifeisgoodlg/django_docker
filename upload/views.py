@@ -13,4 +13,4 @@ def image_upload(request):
 
 def upload_success(request):
     images = UploadedImage.objects.all()
-    return render(request, 'upload/upload_success.html', {'iamges':images})
+    return render(request, 'upload/upload_success.html', {'iamges': images})
