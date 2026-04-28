@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'django_docker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rdsdb',
+        'USER': 'django',
+        'PASSWORD': os.getenv('LOCAL_RDSDB_PASSWORD'),
+        'HOST': 'django-post.c3kmkqc4izcv.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
