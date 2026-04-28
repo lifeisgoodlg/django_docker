@@ -31,7 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '43.200.225.126',
-    'localhost'
+    'localhost',
+    '127.0.0.1'
+
 ]
 
 
@@ -45,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'upload',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +136,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),  # ← 이 줄 추가
 # ]
+
+CSRF_TRUSTED_ORIGINS = []
+
+STORAGES = {
+  "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+  },
+  "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+  },
+}
+
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+ASW_SECRETE_ACCESS_KEY = os.getenv("ASW_SECRETE_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+AWS_S3_SIGNATURE_VERSION = 's3v4'
